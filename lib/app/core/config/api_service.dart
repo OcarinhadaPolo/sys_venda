@@ -1,7 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 class ApiService {
-  static const String URL_BASE = 'http://localhost/sys_venda/api';
+  static const String URL_BASE = 'http://localhost:80/sys_venda/api';
   static const String CREATE_PRODUCT = '$URL_BASE/product/create_product.php';
   static const String DELETE_PRODUCT = '$URL_BASE/product/delete_product.php';
   static const String GET_ALL_PRODUCTS =

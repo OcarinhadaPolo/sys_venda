@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:sys_venda/app/core/models/produto_model.dart';
 import 'package:sys_venda/app/core/repositories/product_repository.dart';
 import 'package:sys_venda/app/modules/home/home_store.dart';
 
@@ -26,9 +27,29 @@ class _HomePageState extends State<HomePage> {
         builder: (context) => Text('${store.counter}'),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          ProdutoRepository()
-              .createProduct("Cerveja Heineken - 600ml", 10.0, "mL");
+        onPressed: () async {
+          bool value = await ProdutoRepository()
+              .updateProduct(6, "Lata de Tinta Bigó - 5L", 100, "L");
+
+          List<ProdutoModel> p = await ProdutoRepository().getAllProducts();
+
+          ProdutoModel pp = await ProdutoRepository().getProductForId(6);
+
+          if (pp.id == 0) {
+            print("vazia fiii");
+          } else {
+            print("tu é foda meu: ${pp.nome}");
+          }
+
+          if (p.isEmpty) {
+            print("vazia fiii");
+          } else {
+            print("tu é foda");
+          }
+
+          if (value) {
+            print("foi foi foi");
+          }
         },
         child: const Icon(Icons.add),
       ),

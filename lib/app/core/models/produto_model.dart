@@ -7,9 +7,9 @@ class ProdutoModel {
   ProdutoModel({this.id, this.nome, this.preco, this.unidade});
 
   ProdutoModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = int.parse(json['id']);
     nome = json['nome'];
-    preco = json['preco'];
+    preco = double.parse(json['preco']);
     unidade = json['unidade'];
   }
 
