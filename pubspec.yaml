@@ -38,6 +38,9 @@ dependencies:
   mobx: ^2.0.7+5
   flutter_mobx: ^2.0.6+1
   dio: ^4.0.6
+  data_tables: ^1.4.0
+  build_runner: ^2.2.0
+  data_table_2: ^2.3.6
 
 dev_dependencies:
   flutter_test:
@@ -93,3 +96,5 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+scripts:
+  mobx: flutter pub run build_runner watch --delete-conflicting-outputs

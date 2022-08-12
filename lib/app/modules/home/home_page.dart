@@ -3,9 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:sys_venda/app/core/models/produto_model.dart';
-import 'package:sys_venda/app/core/models/venda_model.dart';
-import 'package:sys_venda/app/core/repositories/sale_repository.dart';
+import 'package:sys_venda/app/core/widgets/drawer_widget.dart';
 
 import 'package:sys_venda/app/modules/home/home_store.dart';
 
@@ -25,12 +23,9 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('Counter'),
       ),
+      drawer: const DrawerWidget(),
       body: Observer(
         builder: (context) => Text('${store.counter}'),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {},
-        child: const Icon(Icons.add),
       ),
     );
   }
