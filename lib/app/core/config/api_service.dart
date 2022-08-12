@@ -15,7 +15,7 @@ class ApiService {
   static const String GET_ALL_CLIENTS = '$URL_BASE/client/get_all_clients.php';
   static const String GET_CLIENT_FOR_ID =
       '$URL_BASE/client/get_client_for_id.php';
-  static const String UPDATE_CLIENT = '$URL_BASE/api/client/update_client.php';
+  static const String UPDATE_CLIENT = '$URL_BASE/client/update_client.php';
 
   static const String CREATE_SALE = '$URL_BASE/sale/create_sale.php';
   static const String GET_SALES_FOR_CLIENT =
