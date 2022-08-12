@@ -3,6 +3,8 @@ class ProdutoModel {
   String? nome;
   double? preco;
   String? unidade;
+  int? quantidade;
+  double? desconto;
 
   ProdutoModel({this.id, this.nome, this.preco, this.unidade});
 
@@ -19,6 +21,8 @@ class ProdutoModel {
     data['nome'] = nome;
     data['preco'] = preco;
     data['unidade'] = unidade;
+    data['desconto'] = desconto;
+    data['quantidade'] = quantidade;
     return data;
   }
 }

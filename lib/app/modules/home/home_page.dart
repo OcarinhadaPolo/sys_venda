@@ -3,8 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:sys_venda/app/core/models/cliente_model.dart';
-import 'package:sys_venda/app/core/repositories/client_repository.dart';
+import 'package:sys_venda/app/core/models/produto_model.dart';
+import 'package:sys_venda/app/core/models/venda_model.dart';
+import 'package:sys_venda/app/core/repositories/sale_repository.dart';
 
 import 'package:sys_venda/app/modules/home/home_store.dart';
 
@@ -28,21 +29,7 @@ class _HomePageState extends State<HomePage> {
         builder: (context) => Text('${store.counter}'),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          //bool value = await ClienteRepository()
-          // .createClient("Nubia Silveira", "02224121412", 9000, 15000);
-
-          //value = await ClienteRepository().deleteClient(6);
-
-          List<ClienteModel> mo = await ClienteRepository().getAllClients();
-
-          //ClienteModel c = await ClienteRepository().getClientForId(1);
-
-          bool value = await ClienteRepository()
-              .updateClient(1, "Bahia 2", "04835063546", 5000, 9000);
-
-          print(value);
-        },
+        onPressed: () async {},
         child: const Icon(Icons.add),
       ),
     );

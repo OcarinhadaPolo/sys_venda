@@ -18,6 +18,8 @@ class ClienteRepository implements ClientInterface {
     ClienteModel clienteModel =
         ClienteModel(nome: nome, cc: cc, cpf: cpf, limite: limite);
 
+    print(jsonEncode(clienteModel.toJson()));
+
     var response =
         await dio.post(ApiService.CREATE_CLIENT, data: clienteModel.toJson());
 
