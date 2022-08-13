@@ -22,6 +22,10 @@ class ProdutosPageState extends State<ProdutosPage> {
   TextEditingController controllerNome = TextEditingController();
   TextEditingController controllerPreco = TextEditingController();
   TextEditingController controllerUnidade = TextEditingController();
+
+  TextEditingController controllerENome = TextEditingController();
+  TextEditingController controllerEPreco = TextEditingController();
+  TextEditingController controllerEUnidade = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -100,7 +104,108 @@ class ProdutosPageState extends State<ProdutosPage> {
                               width: 20,
                             ),
                             IconButton(
-                                onPressed: (() => print('a')),
+                                onPressed: () {
+                                  controllerENome.text = produto.nome!;
+                                  controllerEPreco.text =
+                                      produto.preco!.toString();
+                                  controllerEUnidade.text = produto.unidade!;
+                                  CoolAlert.show(
+                                      confirmBtnText: "Editar",
+                                      context: context,
+                                      type: CoolAlertType.custom,
+                                      widget: Form(
+                                        key: _formKey,
+                                        child: Column(
+                                          children: [
+                                            const SizedBox(
+                                              height: 20,
+                                            ),
+                                            const Center(
+                                                child: Text(
+                                              "Editar Produto",
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold),
+                                            )),
+                                            const SizedBox(
+                                              height: 20,
+                                            ),
+                                            TextFieldDefault(
+                                                controller: controllerENome,
+                                                onChanged: (value) {},
+                                                validator: (value) {
+                                                  return null;
+                                                },
+                                                prefixIcon:
+                                                    const Icon(Icons.person),
+                                                hintText: "Nome",
+                                                obscureText: false,
+                                                inputType: TextInputType.text),
+                                            const SizedBox(
+                                              height: 20,
+                                            ),
+                                            TextFieldDefault(
+                                                controller: controllerEPreco,
+                                                onChanged: (value) {},
+                                                validator: (value) {
+                                                  return null;
+                                                },
+                                                prefixIcon:
+                                                    const Icon(Icons.money),
+                                                hintText: "Preço",
+                                                obscureText: false,
+                                                inputType:
+                                                    TextInputType.number),
+                                            const SizedBox(
+                                              height: 20,
+                                            ),
+                                            TextFieldDefault(
+                                                controller: controllerEUnidade,
+                                                onChanged: (value) {},
+                                                validator: (value) {
+                                                  return null;
+                                                },
+                                                prefixIcon:
+                                                    const Icon(Icons.numbers),
+                                                hintText: "Unidade",
+                                                obscureText: false,
+                                                inputType: TextInputType.text),
+                                            const SizedBox(
+                                              height: 20,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      onConfirmBtnTap: () async {
+                                        bool create = await ProdutoRepository()
+                                            .updateProduct(
+                                                produto.id!,
+                                                controllerENome.text,
+                                                double.parse(
+                                                    controllerEPreco.text),
+                                                controllerEUnidade.text);
+
+                                        if (create) {
+                                          Modular.to.pop();
+                                          CoolAlert.show(
+                                              context: context,
+                                              type: CoolAlertType.success,
+                                              title: "Sucesso",
+                                              text:
+                                                  "Produto Editado com sucesso");
+
+                                          store.getAllProducts();
+                                        } else {
+                                          Modular.to.pop();
+                                          CoolAlert.show(
+                                              context: context,
+                                              type: CoolAlertType.error,
+                                              title: "Falha",
+                                              text:
+                                                  "Ocorreu uma falha ao editar o produto");
+                                        }
+                                      });
+                                },
                                 icon: const Icon(
                                   Icons.edit,
                                   color: Colors.blue,
@@ -180,7 +285,9 @@ class ProdutosPageState extends State<ProdutosPage> {
                       TextFieldDefault(
                           controller: controllerNome,
                           onChanged: (value) {},
-                          validator: (value) {},
+                          validator: (value) {
+                            return null;
+                          },
                           prefixIcon: const Icon(Icons.person),
                           hintText: "Nome",
                           obscureText: false,
@@ -191,7 +298,9 @@ class ProdutosPageState extends State<ProdutosPage> {
                       TextFieldDefault(
                           controller: controllerPreco,
                           onChanged: (value) {},
-                          validator: (value) {},
+                          validator: (value) {
+                            return null;
+                          },
                           prefixIcon: const Icon(Icons.money),
                           hintText: "Preço",
                           obscureText: false,
@@ -202,7 +311,9 @@ class ProdutosPageState extends State<ProdutosPage> {
                       TextFieldDefault(
                           controller: controllerUnidade,
                           onChanged: (value) {},
-                          validator: (value) {},
+                          validator: (value) {
+                            return null;
+                          },
                           prefixIcon: const Icon(Icons.numbers),
                           hintText: "Unidade",
                           obscureText: false,
