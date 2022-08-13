@@ -23,6 +23,13 @@ class DrawerWidget extends StatelessWidget {
             title: const Text("Produtos"),
             leading: const Icon(Icons.shop_2),
           ),
+          ListTile(
+            onTap: () {
+              Modular.to.pushNamed('/clientes');
+            },
+            title: const Text("Clientes"),
+            leading: const Icon(Icons.person),
+          ),
         ],
       ),
     );
